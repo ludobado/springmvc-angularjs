@@ -1,0 +1,84 @@
+<div class="alert alert-error" ng-show="error">{{errorMessage}}</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<i class="icon-calendar"></i>
+			<h3 class="panel-title">Contact Form</h3>
+		</div>
+
+		<div class="panel-body">
+			<form role="form">
+				<div class="form-group">
+					<label for=""inputFirstName"">FirstName</label> <input type="text"
+						class="form-control" id="inputFirstName"
+						ng-model="contact.firstname" placeholder="Firstname">
+				</div>
+				<div class="form-group">
+					<label for="inputLastname">LastName</label> <input type="text"
+						class="form-control" id="inputLastname"
+						ng-model="contact.lastname" placeholder="LastName">
+				</div>
+				<div class="form-group">
+					<label for="inputAge">Age</label> <input type="text"
+						class="form-control" id="inputAge" ng-model="contact.age"
+						placeholder="Age">
+				</div>
+				<div style="text-align:center;">
+					<button type="submit" class="btn btn-primary"
+					ng-click="addContact(contact)">Add Contact</button>
+					<button type="button" class="btn" ng-click="resetContactForm()">Cancel</button>
+				</div>
+			
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<i class="icon-calendar"></i>
+			<h3 class="panel-title">Contact List</h3>
+		</div>
+
+		<div class="panel-body" style="height:290px;overflow-y:auto" >
+				<div class="alert alert-info" style="width:100%;"
+			ng-show="contacts.length == 0">No contacts found</div>
+	
+			<div ng-show="contacts.length > 0">
+				<div style="margin-bottom: 15px">
+					<input type="text" ng-model="search" class="form-control search-query"
+						placeholder="Search">
+				</div>
+
+				<table class="table table-bordered table-striped"
+					style="width: 100%;">
+					<thead>
+						<tr>
+							<th style="text-align: center; width: 25px;">Action</th>
+							<th style="text-align: center;">FirstName</th>
+							<th style="text-align: center;">LastName</th>
+							<th style="text-align: center;">Age</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							ng-repeat="contact in contacts | filter:search | orderBy:'firstname'">
+							<td style="width: 70px; text-align: center;"><button
+									class="btn btn-xs btn-danger"
+									ng-click="removeContact(contact)">Remove</button></td>
+							<td>{{contact.firstname}}</td>
+							<td>{{contact.lastname}}</td>
+							<td>{{contact.age}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
